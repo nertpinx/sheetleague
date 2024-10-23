@@ -1,5 +1,5 @@
 macos-sonoma:
-  stage: builds
+  stage: build
   image: registry.gitlab.com/libvirt/libvirt-ci/cirrus-run:latest
   interruptible: true
   needs: []
