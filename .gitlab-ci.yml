@@ -7,7 +7,7 @@ macos-sonoma:
     - cirrus-vars <build.yml >sonoma.yml
     - cat sonoma.yml
     - cirrus-run -v --show-build-log always sonoma.yml | tee output.log
-    - "sed -n 's_Build successful: https://cirrus-ci.com/build/__p' | tee build_id.txt"
+    - "sed -n 's_Build successful: https://cirrus-ci.com/build/__p' output.log | tee build_id.txt"
     - wget "https://api.cirrus-ci.com/v1/artifact/task/$(cat build_id.txt)/binaries/target/release/sheetleague"
     - if "$GIT_COMMIT_TAG"; then mv sheetleague sheetleague-"$GIT_COMMIT_TAG"; fi
   artifacts:
