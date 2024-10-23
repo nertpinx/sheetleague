@@ -1,0 +1,17 @@
+macos-sonoma:
+  stage: builds
+  image: registry.gitlab.com/libvirt/libvirt-ci/cirrus-run:latest
+  interruptible: true
+  needs: []
+  script:
+    - cirrus-vars <build.yml >sonoma.yml
+    - cat sonoma.yml
+    - cirrus-run -v --show-build-log always sonoma.yml
+  rules:
+    - if: '$CIRRUS_GITHUB_REPO == null || $CIRRUS_API_TOKEN == null'
+      when: never
+
+    - if: '$CI_PROJECT_NAMESPACE == $RUN_UPSTREAM_NAMESPACE && $CI_PIPELINE_SOURCE == "push"'
+      when: on_success
+
+    - when: never
