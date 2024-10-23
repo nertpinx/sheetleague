@@ -6,14 +6,15 @@ env:
   CI_COMMIT_REF_NAME: "@CI_COMMIT_REF_NAME@"
   CI_MERGE_REQUEST_REF_PATH: "@CI_MERGE_REQUEST_REF_PATH@"
   CI_COMMIT_SHA: "@CI_COMMIT_SHA@"
-  PATH: "/usr/local/opt/ccache/libexec:/usr/local/opt/gettext/bin:/usr/local/opt/libpcap/bin:/usr/local/opt/libxslt/bin:$PATH"
+  PATH: "$HOME/.cargo/bin:/usr/local/opt/ccache/libexec:/usr/local/opt/gettext/bin:/usr/local/opt/libpcap/bin:/usr/local/opt/libxslt/bin:$PATH"
   PKG_CONFIG_PATH: /usr/local/opt/curl/lib/pkgconfig
 
 build_task:
   install_script:
     - brew update
     - brew upgrade
-    - brew install libadwaita gtk4
+    - brew install libadwaita gtk4 rustup pango
+    - rustup-init -y
   clone_script:
     - git clone --depth 100 "https://gitlab.com/nertpinx/sheetleague.git" .
     - git fetch origin "${CI_MERGE_REQUEST_REF_PATH:-$CI_COMMIT_REF_NAME}"

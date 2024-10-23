@@ -12,9 +12,9 @@ fn main() -> glib::ExitCode {
 }
 
 fn build_ui(app: &adw::Application) {
-    let settings = gio::Settings::new(APP_ID);
+//    let settings = gio::Settings::new(APP_ID);
 
-    let is_switch_enabled = settings.boolean("is-switch-enabled");
+    let is_switch_enabled = false; // settings.boolean("is-switch-enabled");
 
     let switch = gtk::Switch::builder()
         .margin_bottom(50)
