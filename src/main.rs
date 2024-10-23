@@ -28,12 +28,12 @@ fn build_ui(app: &adw::Application) {
 
     switch.set_active(is_switch_enabled);
 
-    switch.connect_state_set(move |_, is_enabled| {
-        settings
-            .set_boolean("is-switch-enabled", is_enabled)
-            .expect("Could not save state");
-        glib::Propagation::Proceed
-    });
+    // switch.connect_state_set(move |_, is_enabled| {
+    //     settings
+    //         .set_boolean("is-switch-enabled", is_enabled)
+    //         .expect("Could not save state");
+    //     glib::Propagation::Proceed
+    // });
 
     let window = gtk::ApplicationWindow::builder()
         .application(app)
