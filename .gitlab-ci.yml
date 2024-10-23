@@ -6,7 +6,13 @@ macos-sonoma:
   script:
     - cirrus-vars <build.yml >sonoma.yml
     - cat sonoma.yml
-    - cirrus-run -v --show-build-log always sonoma.yml
+    - cirrus-run -v --show-build-log always sonoma.yml | tee output.log
+    - sed -n 's_Build successful: https://cirrus-ci.com/build/__p' | tee build_id.txt
+    - wget "https://api.cirrus-ci.com/v1/artifact/task/$(cat build_id.txt)/binaries/target/release/sheetleague"
+    - if "$GIT_COMMIT_TAG"; then mv sheetleague sheetleague-"$GIT_COMMIT_TAG"; fi
+  artifacts:
+    paths:
+      - sheetleague*
   rules:
     - if: '$CIRRUS_GITHUB_REPO == null || $CIRRUS_API_TOKEN == null'
       when: never
