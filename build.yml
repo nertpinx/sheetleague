@@ -13,7 +13,7 @@ build_task:
   install_script:
     - brew update
     - brew upgrade
-    - brew install
+    - brew install libadwaita gtk4
   clone_script:
     - git clone --depth 100 "https://gitlab.com/nertpinx/sheetleague.git" .
     - git fetch origin "${CI_MERGE_REQUEST_REF_PATH:-$CI_COMMIT_REF_NAME}"
