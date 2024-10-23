@@ -21,3 +21,5 @@ build_task:
     - git reset --hard "$CI_COMMIT_SHA"
   build_script:
     - cargo build --release
+  binaries_artifacts:
+    path: "target/release/sheetleague"
