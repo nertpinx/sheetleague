@@ -11,7 +11,7 @@ macos-sonoma:
     - if: '$CIRRUS_GITHUB_REPO == null || $CIRRUS_API_TOKEN == null'
       when: never
 
-    - if: '$CI_PROJECT_NAMESPACE == $RUN_UPSTREAM_NAMESPACE && $CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PROJECT_NAMESPACE == "nertpinx" && $CI_PIPELINE_SOURCE == "push"'
       when: on_success
 
     - when: never
